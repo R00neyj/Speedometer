@@ -1,0 +1,161 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* Tailwind 4 Dark Mode Strategy (Class-based) */
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Font Family Definition */
+  --font-headline: "Plus Jakarta Sans", "Noto Sans KR", sans-serif;
+  --font-body: "Noto Sans KR", "Inter", sans-serif;
+
+  /* Color Palette (Base variables) */
+  --color-primary: #0058cd;
+  --color-primary-container: #2472f8;
+  --color-background: #f6faff;
+  --color-surface: #f6faff;
+  --color-surface-container: #e7eff6;
+  --color-surface-container-low: #eef4fb;
+  --color-surface-container-high: #e0e9f1;
+  --color-surface-container-highest: #d9e4ed;
+  --color-surface-container-lowest: #ffffff;
+  
+  --color-on-background: #29343b;
+  --color-on-surface: #29343b;
+  --color-on-surface-variant: #566068;
+  --color-outline-variant: #a8b3bc;
+  
+  --color-secondary: #585f72;
+  --color-secondary-container: #dce2f9;
+  --color-error: #a83836;
+
+  /* Custom Border Radius */
+  --radius-surface: 1.5rem;
+  --radius-surface-lg: 2rem;
+  --radius-surface-xl: 3rem;
+
+  /* Custom Shadows */
+  --shadow-ambient: 0px 12px 32px rgba(41, 52, 59, 0.06);
+  --shadow-ghost: 0px 4px 16px rgba(41, 52, 59, 0.04);
+
+  /* Custom Letter Spacing */
+  --tracking-ko: -0.04em;
+  --tracking-headline: -0.02em;
+}
+
+/* Base Styles & Theme Overrides */
+@layer base {
+  :root {
+    color-scheme: light;
+    /* DaisyUI 5 custom variables can also be placed here if needed */
+  }
+
+  .dark {
+    color-scheme: dark;
+    
+    /* Dark Mode Overrides for Base Variables (OLED Optimized) */
+    --color-primary: #85adff;
+    --color-primary-container: #6d9fff;
+    --color-background: #0e0e0f;
+    --color-surface: #0e0e0f;
+    --color-surface-container: #131314;
+    --color-surface-container-low: #131314;
+    --color-surface-container-high: #1f1f21;
+    --color-surface-container-highest: #262627;
+    --color-surface-container-lowest: #0e0e0f;
+    
+    --color-on-background: #f0f4f8;
+    --color-on-surface: #f0f4f8;
+    --color-on-surface-variant: #adaaab;
+    --color-outline-variant: #484849;
+    
+    --color-dark-primary: #ffffff;
+    --color-dark-primary-container: #ffffff;
+    
+    --shadow-ambient: 0px 12px 32px rgba(0, 0, 0, 0.6);
+    --shadow-ghost: 0px 4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Reset Browser Default Styles */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  button, input, select, textarea {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-on-background font-body transition-colors duration-500 tracking-ko;
+    min-height: 100dvh;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+/* Utility Components */
+.lang-ko * {
+  letter-spacing: -0.04em !important;
+}
+
+.glass {
+  @apply backdrop-blur-2xl bg-white/80 dark:bg-black/80;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.fill-icon {
+  font-variation-settings: 'FILL' 1;
+}
+
+.shadow-ambient {
+  box-shadow: var(--shadow-ambient);
+}
+
+.shadow-ghost {
+  box-shadow: var(--shadow-ghost);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Animations */
+@keyframes animate-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-in {
+  animation: animate-in 0.7s ease-out forwards;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}

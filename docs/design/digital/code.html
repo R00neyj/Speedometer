@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#29343b",
+                    "on-tertiary": "#fff6ff",
+                    "error-dim": "#67040d",
+                    "on-secondary": "#f9f8ff",
+                    "outline-variant": "#a8b3bc",
+                    "on-error-container": "#6e0a12",
+                    "on-secondary-fixed": "#383f51",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-dim": "#004db5",
+                    "primary": "#0058cd",
+                    "secondary-fixed-dim": "#ced4eb",
+                    "background": "#f6faff",
+                    "tertiary-dim": "#5e4b73",
+                    "secondary": "#585f72",
+                    "tertiary-fixed-dim": "#d3baea",
+                    "secondary-container": "#dce2f9",
+                    "primary-container": "#2472f8",
+                    "inverse-surface": "#0a0f12",
+                    "secondary-fixed": "#dce2f9",
+                    "surface-dim": "#d1dbe5",
+                    "primary-fixed": "#2472f8",
+                    "surface-variant": "#d9e4ed",
+                    "on-primary-container": "#000000",
+                    "inverse-primary": "#578cff",
+                    "surface": "#f6faff",
+                    "error": "#a83836",
+                    "inverse-on-surface": "#999da2",
+                    "surface-container": "#e7eff6",
+                    "surface-tint": "#0058cd",
+                    "primary-fixed-dim": "#0065ea",
+                    "on-surface-variant": "#566068",
+                    "on-tertiary-container": "#523f67",
+                    "tertiary": "#6b5780",
+                    "on-tertiary-fixed": "#3e2c52",
+                    "on-secondary-container": "#4b5164",
+                    "tertiary-container": "#e1c8f8",
+                    "surface-container-high": "#e0e9f1",
+                    "secondary-dim": "#4c5366",
+                    "error-container": "#fa746f",
+                    "on-primary-fixed": "#ffffff",
+                    "surface-container-highest": "#d9e4ed",
+                    "outline": "#717c85",
+                    "on-tertiary-fixed-variant": "#5c4871",
+                    "tertiary-fixed": "#e1c8f8",
+                    "on-secondary-fixed-variant": "#555b6e",
+                    "surface-bright": "#f6faff",
+                    "on-primary": "#f9f8ff",
+                    "on-primary-fixed-variant": "#edefff",
+                    "on-error": "#fff7f6",
+                    "on-background": "#29343b",
+                    "surface-container-low": "#eef4fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f6faff; }
+        .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 h-20 w-full bg-[#f6faff]/80 backdrop-blur-md dark:bg-[#0a0c10]/80">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#1B6EF3] dark:text-[#4d8df6] text-3xl" data-icon="speed">speed</span>
+<h1 class="text-2xl font-extrabold text-[#1B6EF3] dark:text-[#4d8df6] font-['Plus_Jakarta_Sans'] tracking-tight">Velocity</h1>
+</div>
+<div class="flex items-center">
+<button class="p-2.5 rounded-full hover:bg-surface-container transition-all active:scale-95 text-[#566068] dark:text-[#a8b3bc]">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-start px-6 pt-24 pb-56">
+<!-- Speedometer Section -->
+<div class="w-full max-w-md flex flex-col items-center justify-center flex-grow py-12 relative">
+<!-- Decorative Background Element -->
+<div class="absolute inset-0 flex items-center justify-center -z-10">
+<div class="w-[340px] h-[340px] bg-primary-container/10 rounded-full blur-[80px]"></div>
+</div>
+<!-- Large Digital Display -->
+<div class="flex flex-col items-center animate-in fade-in zoom-in duration-700">
+<span class="text-[11rem] md:text-[14rem] font-extrabold font-headline leading-[0.8] tracking-tighter text-on-background">
+                    65
+                </span>
+<span class="text-xl md:text-2xl font-bold font-headline tracking-[0.3em] text-on-surface-variant uppercase opacity-40 mt-8">
+                    km/h
+                </span>
+</div>
+<!-- Contextual Stats Grid -->
+<div class="grid grid-cols-2 gap-6 w-full mt-24">
+<!-- Trip Distance Card -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-[0px_8px_24px_rgba(41,52,59,0.04)] border border-outline-variant/10 flex flex-col gap-2 transition-all hover:shadow-lg">
+<span class="text-on-surface-variant text-[10px] font-bold tracking-[0.1em] uppercase opacity-70">Trip Distance</span>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-extrabold font-headline">12.4</span>
+<span class="text-sm font-semibold text-outline-variant">km</span>
+</div>
+</div>
+<!-- Average Speed Card -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-[0px_8px_24px_rgba(41,52,59,0.04)] border border-outline-variant/10 flex flex-col gap-2 transition-all hover:shadow-lg">
+<span class="text-on-surface-variant text-[10px] font-bold tracking-[0.1em] uppercase opacity-70">Avg Speed</span>
+<div class="flex items-baseline gap-1">
+<span class="text-3xl font-extrabold font-headline">48</span>
+<span class="text-sm font-semibold text-outline-variant">km/h</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Controls Area -->
+<div class="fixed bottom-0 left-0 right-0 flex flex-col items-center z-50">
+<!-- Floating Action Button -->
+<button class="mb-8 w-56 h-18 py-4 bg-primary text-white rounded-full shadow-[0px_16px_32px_rgba(0,88,205,0.3)] flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-95 transition-all group border-4 border-white/20" data-started="false" id="start-stop-btn" onclick="const btn = this; const isStarted = btn.dataset.started === 'true'; if(isStarted) { btn.dataset.started = 'false'; btn.querySelector('.label').innerText = 'Start'; btn.querySelector('.icon').innerText = 'play_arrow'; btn.classList.replace('bg-error', 'bg-primary'); btn.classList.replace('shadow-[0px_16px_32px_rgba(168,56,54,0.3)]', 'shadow-[0px_16px_32px_rgba(0,88,205,0.3)]'); } else { btn.dataset.started = 'true'; btn.querySelector('.label').innerText = 'Stop'; btn.querySelector('.icon').innerText = 'stop'; btn.classList.replace('bg-primary', 'bg-error'); btn.classList.replace('shadow-[0px_16px_32px_rgba(0,88,205,0.3)]', 'shadow-[0px_16px_32px_rgba(168,56,54,0.3)]'); }">
+<span class="material-symbols-outlined icon text-3xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+<span class="label font-headline font-bold text-xl tracking-tight">Start</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="w-full flex justify-around items-center px-8 pb-8 pt-5 bg-white/80 dark:bg-black/80 backdrop-blur-2xl border-t border-outline-variant/10 rounded-t-[3.5rem] shadow-[0px_-20px_40px_rgba(0,0,0,0.03)]">
+<!-- Digital Tab (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary/10 text-primary rounded-2xl px-8 py-3 transition-all tap-highlight-none" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="numbers" style="font-variation-settings: 'FILL' 1;">numbers</span>
+<span class="font-headline text-xs font-bold tracking-wide">Digital</span>
+</a>
+<!-- Gauge Tab (Inactive) -->
+<a class="flex flex-col items-center justify-center text-outline-variant hover:text-primary transition-all tap-highlight-none px-8 py-3" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="speed">speed</span>
+<span class="font-headline text-xs font-bold tracking-wide">Gauge</span>
+</a>
+</nav>
+</div>
+</body></html>
