@@ -7,7 +7,7 @@ export const useI18nStore = defineStore('i18n', () => {
 
   const messages = {
     en: {
-      title: 'Velocity',
+      title: 'Speedometer',
       fontSize: 'Font Size',
       tripDistance: 'Session Distance',
       avgSpeed: 'Session Avg Speed',

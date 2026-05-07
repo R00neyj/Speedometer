@@ -50,10 +50,10 @@ export default defineConfig({
         ]
       },
       manifest: {
-        name: 'Velocity Speedometer',
-        short_name: 'Velocity',
+        name: 'Speedometer',
+        short_name: 'Speedometer',
         description: 'GPS based Speedometer Web App with Editorial Design',
-        theme_color: '#0058cd',
+        theme_color: '#1B6EF3',
         background_color: '#f6faff',
         display: 'standalone',
         orientation: 'portrait',

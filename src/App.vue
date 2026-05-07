@@ -34,12 +34,22 @@ watch(
     if (typeof document !== 'undefined') {
       document.documentElement.setAttribute('data-theme', newMode)
       document.documentElement.classList.toggle('dark', newMode === 'dark')
+      
+      // 상단 기기 상태바 색상(theme-color) 동기화
+      const themeColor = newMode === 'dark' ? '#0e0e0f' : '#f6faff'
+      let metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      if (!metaThemeColor) {
+        metaThemeColor = document.createElement('meta')
+        metaThemeColor.setAttribute('name', 'theme-color')
+        document.head.appendChild(metaThemeColor)
+      }
+      metaThemeColor.setAttribute('content', themeColor)
     }
   },
   { immediate: true },
 )
 
-const currentView = ref('digital') // 'digital' | 'gauge'
+const currentView = useStorage('current-view', 'digital') // 'digital' | 'gauge'
 
 // 창 크기 감지 (반응형 대응)
 const { width, height } = useWindowSize()
