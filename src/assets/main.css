@@ -10,7 +10,7 @@
   --font-body: "Noto Sans KR", "Inter", sans-serif;
 
   /* Color Palette (Base variables) */
-  --color-primary: #4d8df6;
+  --color-primary: #1B6EF3;
   --color-primary-container: #2472f8;
   --color-background: #f6faff;
   --color-surface: #f6faff;
@@ -54,7 +54,7 @@
     color-scheme: dark;
     
     /* Dark Mode Overrides for Base Variables (OLED Optimized) */
-    --color-primary: #4d8df6;
+    --color-primary: #1B6EF3;
     --color-primary-container: #6d9fff;
     --color-background: #0e0e0f;
     --color-surface: #0e0e0f;
