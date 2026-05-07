@@ -53,7 +53,7 @@ export default defineConfig({
         name: 'Speedometer',
         short_name: 'Speedometer',
         description: 'GPS based Speedometer Web App with Editorial Design',
-        theme_color: '#1B6EF3',
+        theme_color: '#4d8df6',
         background_color: '#f6faff',
         display: 'standalone',
         orientation: 'portrait',
