@@ -1,13 +1,17 @@
-@import "tailwindcss";
-@plugin "daisyui";
+/* source(none) + 명시적 allowlist: 기본 자동 탐지는 docs/의 디자인 목업(다른 클래스 어휘)과
+   dev-dist/의 생성물까지 스캔해 쓰지 않는 유틸리티를 번들에 넣는다. */
+@import 'tailwindcss' source(none);
+@source '../../src';
+@source '../../index.html';
+@plugin 'daisyui';
 
 /* Tailwind 4 Dark Mode Strategy (Class-based) */
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
   /* Font Family Definition */
-  --font-headline: "Plus Jakarta Sans", "Noto Sans KR", sans-serif;
-  --font-body: "Noto Sans KR", "Inter", sans-serif;
+  --font-headline: 'Plus Jakarta Sans', 'Noto Sans KR', sans-serif;
+  --font-body: 'Noto Sans KR', 'Inter', sans-serif;
 
   /* Color Palette (Base variables) */
   --color-primary: #0058cd;
@@ -19,12 +23,12 @@
   --color-surface-container-high: #e0e9f1;
   --color-surface-container-highest: #d9e4ed;
   --color-surface-container-lowest: #ffffff;
-  
+
   --color-on-background: #29343b;
   --color-on-surface: #29343b;
   --color-on-surface-variant: #566068;
   --color-outline-variant: #a8b3bc;
-  
+
   --color-secondary: #585f72;
   --color-secondary-container: #dce2f9;
   --color-error: #a83836;
@@ -33,10 +37,6 @@
   --radius-surface: 1.5rem;
   --radius-surface-lg: 2rem;
   --radius-surface-xl: 3rem;
-
-  /* Custom Shadows */
-  --shadow-ambient: 0px 12px 32px rgba(41, 52, 59, 0.06);
-  --shadow-ghost: 0px 4px 16px rgba(41, 52, 59, 0.04);
 
   /* Custom Letter Spacing */
   --tracking-ko: -0.04em;
@@ -47,12 +47,14 @@
 @layer base {
   :root {
     color-scheme: light;
-    /* DaisyUI 5 custom variables can also be placed here if needed */
+
+    /* @theme 토큰이 아니다 (아래 .shadow-ambient 주석 참고) */
+    --shadow-ambient: 0px 12px 32px rgba(41, 52, 59, 0.06);
   }
 
   .dark {
     color-scheme: dark;
-    
+
     /* Dark Mode Overrides for Base Variables (OLED Optimized) */
     --color-primary: #85adff;
     --color-primary-container: #6d9fff;
@@ -63,31 +65,30 @@
     --color-surface-container-high: #1f1f21;
     --color-surface-container-highest: #262627;
     --color-surface-container-lowest: #0e0e0f;
-    
+
     --color-on-background: #f0f4f8;
     --color-on-surface: #f0f4f8;
     --color-on-surface-variant: #adaaab;
     --color-outline-variant: #484849;
-    
-    --color-dark-primary: #ffffff;
-    --color-dark-primary-container: #ffffff;
-    
+
     --shadow-ambient: 0px 12px 32px rgba(0, 0, 0, 0.6);
-    --shadow-ghost: 0px 4px 16px rgba(0, 0, 0, 0.4);
   }
 
   /* Reset Browser Default Styles */
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
 
-  input[type="number"] {
+  input[type='number'] {
     -moz-appearance: textfield;
   }
 
-  button, input, select, textarea {
+  button,
+  input,
+  select,
+  textarea {
     outline: none;
     -webkit-tap-highlight-color: transparent;
   }
@@ -102,31 +103,32 @@
 
 /* Utility Components */
 .lang-ko * {
-  letter-spacing: -0.04em !important;
-}
-
-.glass {
-  @apply backdrop-blur-2xl bg-white/80 dark:bg-black/80;
+  letter-spacing: var(--tracking-ko) !important;
 }
 
 .material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
 }
 
+/* font-variation-settings는 누적되지 않는 단일 선언이므로 FILL만 적으면
+   나머지 축이 폰트 기본값으로 되돌아간다. 네 축을 모두 다시 명시할 것. */
 .fill-icon {
-  font-variation-settings: 'FILL' 1;
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
 }
 
+/* --shadow-ambient를 @theme에 두면 Tailwind가 라이트 값을 인라인한 .shadow-ambient
+   유틸리티를 따로 생성해 .dark 오버라이드가 먹지 않는다. 그래서 토큰은 :root에 두고
+   이 규칙 하나만 남긴다. 대가: md:/hover:/dark: 같은 variant 형태는 존재하지 않는다. */
 .shadow-ambient {
   box-shadow: var(--shadow-ambient);
-}
-
-.shadow-ghost {
-  box-shadow: var(--shadow-ghost);
-}
-
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
 }
 
 /* Animations */

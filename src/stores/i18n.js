@@ -5,10 +5,13 @@ import { useStorage } from '@vueuse/core'
 export const useI18nStore = defineStore('i18n', () => {
   const locale = useStorage('app-locale', 'en')
 
+  // 키를 추가할 때는 en/ko 양쪽에 모두 넣을 것. 한쪽만 넣으면 조용히 undefined가 렌더된다.
   const messages = {
     en: {
       title: 'Velocity',
       fontSize: 'Font Size',
+      language: 'Language',
+      toggleTheme: 'Toggle theme',
       tripDistance: 'Session Distance',
       avgSpeed: 'Session Avg Speed',
       totalDistance: 'Total Distance',
@@ -26,6 +29,8 @@ export const useI18nStore = defineStore('i18n', () => {
     ko: {
       title: '속도계',
       fontSize: '글꼴 크기',
+      language: '언어',
+      toggleTheme: '테마 전환',
       tripDistance: '세션 이동 거리',
       avgSpeed: '세션 평균 속도',
       totalDistance: '누적 이동 거리',

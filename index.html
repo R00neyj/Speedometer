@@ -1,6 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en">
   <head>
+    <script>
+      // 첫 페인트 전에 테마를 확정한다. 번들은 defer 모듈이라 여기서 정하지 않으면
+      // 다크 모드 사용자가 라이트 배경을 한 프레임 보게 된다.
+      // 저장소 키는 useColorMode의 기본값 — src/App.vue의 useColorMode 호출과 함께 유지할 것.
+      ;(function () {
+        var stored = localStorage.getItem('vueuse-color-scheme') || 'auto'
+        var isDark =
+          stored === 'dark' ||
+          (stored === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.add(isDark ? 'dark' : 'light')
+        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light')
+      })()
+    </script>
     <meta charset="UTF-8">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -14,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
   </head>
-  <body class="bg-background text-on-background dark:bg-[#0e0e0f] dark:text-white antialiased overflow-hidden">
+  <body class="dark:text-white antialiased overflow-hidden">
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>

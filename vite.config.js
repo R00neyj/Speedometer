@@ -17,7 +17,8 @@ export default defineConfig({
         enabled: true
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,vue}'],
+        // dist/ 산출물만 대상이다 — .vue는 빌드 결과에 존재하지 않는다
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,json}'],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
