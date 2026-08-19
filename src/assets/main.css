@@ -14,11 +14,13 @@
   name: 'light';
   default: true;
   --color-primary: var(--color-brand);
+  --color-error: var(--color-danger);
 }
 @plugin 'daisyui/theme' {
   name: 'dark';
   prefersdark: true;
   --color-primary: var(--color-brand);
+  --color-error: var(--color-danger);
 }
 
 /* Tailwind 4 Dark Mode Strategy (Class-based) */
@@ -29,9 +31,11 @@
   --font-headline: 'Plus Jakarta Sans', 'Noto Sans KR', sans-serif;
   --font-body: 'Noto Sans KR', 'Inter', sans-serif;
 
-  /* 브랜드 색의 단일 출처. 위 daisyui/theme 블록이 이 값을 참조하므로
-     여기만 고치면 Tailwind 유틸리티와 DaisyUI 컴포넌트가 함께 따라온다. */
+  /* 브랜드 색의 단일 출처. DaisyUI와 이름이 겹치지 않아야 위 daisyui/theme 블록이
+     var()로 참조할 수 있다. 여기만 고치면 Tailwind 유틸리티와 DaisyUI 컴포넌트가
+     함께 따라온다. --color-danger는 아래 .dark 블록에서 테마별로 덮인다. */
   --color-brand: #1b6ef3;
+  --color-danger: #a83836;
 
   /* Color Palette (Base variables) */
   --color-primary: var(--color-brand);
@@ -49,10 +53,7 @@
   --color-on-surface-variant: #566068;
   --color-outline-variant: #a8b3bc;
 
-  /* 주의: --color-error 는 DaisyUI 테마가 덮어쓴다. 실제 화면에는 DaisyUI의 빨강이
-     적용되고 이 값은 쓰이지 않는다. 이 값을 살리려면 --color-brand 와 같은 방식으로
-     위 daisyui/theme 두 블록에 --color-error 를 추가해야 한다 (경고색이 바뀐다). */
-  --color-error: #a83836;
+  --color-error: var(--color-danger);
 
   /* Custom Border Radius */
   --radius-surface: 1.5rem;
@@ -91,6 +92,10 @@
     --color-on-surface: #f0f4f8;
     --color-on-surface-variant: #adaaab;
     --color-outline-variant: #484849;
+
+    /* #a83836 과 같은 hue/chroma를 유지하고 밝기만 올린 값 (oklch 50%->62%).
+       원본은 #0e0e0f 위에서 3.0:1 밖에 나오지 않아 14px 라벨이 읽히지 않는다. */
+    --color-danger: #d15e58;
 
     --shadow-ambient: 0px 12px 32px rgba(0, 0, 0, 0.6);
   }

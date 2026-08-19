@@ -111,7 +111,7 @@ const rotation = computed(() => `rotate(${angleFor(props.speed)}deg)`)
         :class="[
           isSmall ? 'h-10 w-2' : 'h-14 w-2.5',
           isWarning
-            ? 'bg-error shadow-[0_0_15px_rgba(168,56,54,0.5)]'
+            ? 'bg-error shadow-[0_0_15px_color-mix(in_oklab,var(--color-error),transparent_50%)]'
             : 'bg-primary dark:bg-white shadow-[0_0_10px_rgba(255,255,255,0.3)]',
         ]"
         class="absolute top-0 left-1/2 -translate-x-1/2 rounded-full transition-colors"
