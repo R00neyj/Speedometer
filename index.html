@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <!-- content는 아래 인라인 스크립트와 App.vue의 THEME_COLORS가 테마에 맞춰 갱신한다.
+         스크립트보다 먼저 와야 querySelector가 찾을 수 있다. -->
+    <meta name="theme-color" content="#f6faff">
     <script>
       // 첫 페인트 전에 테마를 확정한다. 번들은 defer 모듈이라 여기서 정하지 않으면
       // 다크 모드 사용자가 라이트 배경을 한 프레임 보게 된다.
@@ -12,16 +16,18 @@
           (stored === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches)
         document.documentElement.classList.add(isDark ? 'dark' : 'light')
         document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light')
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute('content', isDark ? '#0e0e0f' : '#f6faff')
       })()
     </script>
-    <meta charset="UTF-8">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Velocity - Speedometer</title>
+    <title>Speedometer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">

@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onUnmounted, ref, watch } from 'vue'
-import { useColorMode, useGeolocation, useWakeLock, useWindowSize } from '@vueuse/core'
+import { useColorMode, useGeolocation, useStorage, useWakeLock, useWindowSize } from '@vueuse/core'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
 import { useI18nStore } from '@/stores/i18n'
 import { useTripStats } from '@/composables/useTripStats'
@@ -17,6 +17,8 @@ const MAX_SPEED = 40
 const TEST_MODE_CLICKS = 7
 const TEST_MODE_CLICK_GAP_MS = 1500
 const OFFLINE_TOAST_MS = 5000
+/** 기기 상태바/주소창 색상. main.css의 --color-background와 함께 유지할 것. */
+const THEME_COLORS = { light: '#f6faff', dark: '#0e0e0f' }
 
 const i18n = useI18nStore()
 
@@ -34,7 +36,12 @@ const theme = mode.state
 watch(
   theme,
   (resolved) => {
+    // DaisyUI가 읽는 속성
     document.documentElement.setAttribute('data-theme', resolved)
+    // 기기 상태바/주소창 색상 (태그는 index.html에 정적으로 있다)
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', THEME_COLORS[resolved])
   },
   { immediate: true },
 )
@@ -69,7 +76,7 @@ watch(offlineReady, (ready) => {
 onUnmounted(() => clearTimeout(toastTimer))
 
 // 표시 설정
-const currentView = ref('digital')
+const currentView = useStorage('current-view', 'digital')
 const fontSize = ref(160)
 
 // 위치 추적 및 통계

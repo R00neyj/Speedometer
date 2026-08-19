@@ -8,7 +8,7 @@ export const useI18nStore = defineStore('i18n', () => {
   // 키를 추가할 때는 en/ko 양쪽에 모두 넣을 것. 한쪽만 넣으면 조용히 undefined가 렌더된다.
   const messages = {
     en: {
-      title: 'Velocity',
+      title: 'Speedometer',
       fontSize: 'Font Size',
       language: 'Language',
       toggleTheme: 'Toggle theme',
